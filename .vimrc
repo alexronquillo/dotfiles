@@ -16,6 +16,7 @@ Plugin 'vim-airline/vim-airline-themes'     " Airline themes
 Plugin 'ctrlpvim/ctrlp.vim'                 " Ctrlp
 Plugin 'nvie/vim-flake8'                    " Flake8
 Plugin 'kshenoy/vim-signature'              " Show marks
+Plugin 'tpope/vim-commentary'               " Comment blocks
 
 call vundle#end()                  " required
 filetype plugin indent on          " required
@@ -65,6 +66,18 @@ set encoding=utf-8
 
 " use system clipboard
 set clipboard=unnamed
+
+" highlight matching [], {}, ()
+set showmatch
+
+" search as characters are entered
+set incsearch
+
+" edit/create file in current directory
+set autochdir
+
+" sync plans workspace with vm
+map )) :!rsync -avz --exclude-from=/Users/alex.ronquillo/workspace/plans/.rsync-filter ~/workspace/plans/ youversionapidev.com:/var/www/plans/current<CR><CR>
 
 " ============================================================
 " Auto commands
