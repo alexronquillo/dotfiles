@@ -10,5 +10,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Make vim default editor.
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
