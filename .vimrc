@@ -11,12 +11,14 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'               " Vundle, required
 Plugin 'tpope/vim-fugitive'                 " Git commands
-Plugin 'vim-airline/vim-airline'            " Airline
-Plugin 'vim-airline/vim-airline-themes'     " Airline themes
-Plugin 'ctrlpvim/ctrlp.vim'                 " Ctrlp
+" Plugin 'vim-airline/vim-airline'            " Airline
+" Plugin 'vim-airline/vim-airline-themes'     " Airline themes
+Plugin 'kien/ctrlp.vim'                     " Ctrlp
 Plugin 'nvie/vim-flake8'                    " Flake8
 Plugin 'kshenoy/vim-signature'              " Show marks
 Plugin 'tpope/vim-commentary'               " Comment blocks
+" Plugin 'chriskempson/base16-vim'            " Add base16 theme
+Plugin 'jacoborus/tender.vim'
 
 call vundle#end()                  " required
 filetype plugin indent on          " required
@@ -26,13 +28,13 @@ filetype plugin indent on          " required
 " ============================================================
 
 " set airline to always appear
-set laststatus=2
+" set laststatus=2
 
 " use powerline fonts
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 " set airline theme
-let g:airline_theme='papercolor'
+" let g:airline_theme='papercolor'
 
 " ============================================================
 " Vim
@@ -43,6 +45,9 @@ syntax enable
 
 " show line numbers
 set number
+
+" paste unmodified from other applications
+set paste
 
 " navigate split layout
 nnoremap <C-J> <C-W><C-J>
@@ -57,7 +62,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
-" add color column 
+" add color column
 set colorcolumn=101
 highlight ColorColumn ctermbg=4
 
@@ -77,10 +82,20 @@ set incsearch
 set autochdir
 
 " sync plans workspace with vm
-map )) :!rsync -avz --exclude-from=/Users/alex.ronquillo/workspace/plans/.rsync-filter ~/workspace/plans/ youversionapidev.com:/var/www/plans/current<CR><CR>
+map ^^ :!rsync -avz --exclude-from="$HOME/workspace/youversionapi.com/.rsync-filter" ~/workspace/youversionapi.com/ youversionapidev.com:/var/www/youversion.com/current<CR><CR>
+
+" set color scheme to Smyck - needs to live in .vim/colors
+" colorscheme smyck
+colorscheme tender
+
+" remove trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+" global ignore
+let g:ctrlp_custom_ignore = 'htmlcov/*,migrations/*'
 
 " ============================================================
-" Auto commands
+" commands
 " ============================================================
 
 " run flake8 on save
